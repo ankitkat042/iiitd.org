@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>360-degree View</title>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+</head>
+<body>
+    <a-scene>
+        <!-- Sky element for the 360-degree image -->
+        <a-sky src="1.jpg" rotation="0 -130 0"></a-sky>
+        
+        <!-- Text label as an informational hotspot -->
+        <a-text 
+            font="kelsonsans"
+            value="Welcome to the Virtual Tour!"
+            width="6"
+            position="-2.5 1.5 -1.5"
+            rotation="0 15 0">
+        </a-text>
+    </a-scene>
+</body>
+</html>
