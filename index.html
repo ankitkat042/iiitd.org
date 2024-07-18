@@ -2,7 +2,8 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>360-degree View</title>
+    <title>IIIT Delhi</title>
+    <link rel="icon" href="tab.png" type="image/x-icon">
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <style>
         #info {
@@ -13,6 +14,10 @@
             color: white;
             font-size: 16px;
             z-index: 100;
+        }
+        a {
+            color: white;
+            text-decoration: none;
         }
         .button {
             position: fixed;
@@ -38,8 +43,8 @@
         <a-sky id="image-sky" src="1.jpg" rotation="0 -130 0"></a-sky>
     </a-scene>
     <div id="info">
-        Mail at: <a href="mailto:ankitkat042@proton.me">ankitkat042@proton.me</a><br>
-        Not associated with: <a href="https://www.iiitd.ac.in/">iiitd.ac.in</a><br>
+        Mail at: <a href="mailto:rankinw3@mail.lcc.edu">rankinw3@mail.lcc.edu</a><br>
+        Not associated with: iiitd.ac.in
     </div>
     <button id="left-button" class="button" onclick="changeImage(-1)">&#10094;</button>
     <button id="right-button" class="button" onclick="changeImage(1)">&#10095;</button>
