@@ -4,20 +4,56 @@
     <meta charset="utf-8">
     <title>360-degree View</title>
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <style>
+        #info {
+            position: fixed;
+            bottom: 10px;
+            width: 100%;
+            text-align: center;
+            color: white;
+            font-size: 16px;
+            z-index: 100;
+        }
+        .button {
+            position: fixed;
+            top: 50%;
+            z-index: 100;
+            cursor: pointer;
+            font-size: 24px;
+            color: white;
+            background-color: rgba(0, 0, 0, 0.5);
+            border: none;
+            padding: 10px;
+        }
+        #left-button {
+            left: 10px;
+        }
+        #right-button {
+            right: 10px;
+        }
+    </style>
 </head>
 <body>
     <a-scene>
-        <!-- Sky element for the 360-degree image -->
-        <a-sky src="1.jpg" rotation="0 -130 0"></a-sky>
-        
-        <!-- Text label as an informational hotspot -->
-        <a-text 
-            font="kelsonsans"
-            value="Welcome to the Virtual Tour!"
-            width="6"
-            position="-2.5 1.5 -1.5"
-            rotation="0 15 0">
-        </a-text>
+        <a-sky id="image-sky" src="1.jpg" rotation="0 -130 0"></a-sky>
     </a-scene>
+    <div id="info">
+        Mail at: <a href="mailto:ankitkat042@proton.me">ankitkat042@proton.me</a><br>
+        Not associated with: <a href="https://www.iiitd.ac.in/">iiitd.ac.in</a><br>
+    </div>
+    <button id="left-button" class="button" onclick="changeImage(-1)">&#10094;</button>
+    <button id="right-button" class="button" onclick="changeImage(1)">&#10095;</button>
+
+    <script>
+        var images = ["1.jpg", "2.jpg", "3.jpg", "4.jpg"];
+        var currentIndex = 0;
+
+        function changeImage(direction) {
+            currentIndex += direction;
+            if (currentIndex < 0) currentIndex = images.length - 1;
+            if (currentIndex >= images.length) currentIndex = 0;
+            document.getElementById('image-sky').setAttribute('src', images[currentIndex]);
+        }
+    </script>
 </body>
 </html>
