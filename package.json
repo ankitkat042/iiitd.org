@@ -1,0 +1,24 @@
+{
+  "name": "iiitd-org",
+  "private": true,
+  "description": "iiitd.org — landing page, people pages at /@handle, and the edge router",
+  "type": "module",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "validate": "node tools/validate.mjs",
+    "build": "node tools/build.mjs",
+    "test": "node tools/build.mjs && node --test --test-reporter=spec \"tests/*.test.mjs\"",
+    "dev": "node tools/build.mjs && wrangler dev",
+    "deploy": "wrangler deploy"
+  },
+  "dependencies": {
+    "ajv": "8.20.0",
+    "mustache": "4.2.0",
+    "yaml": "2.9.1"
+  },
+  "devDependencies": {
+    "wrangler": "4.157.0"
+  }
+}

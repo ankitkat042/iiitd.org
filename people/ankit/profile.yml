@@ -1,0 +1,21 @@
+# iiitd.org/@ankit — starter profile; edit freely (see CONTRIBUTING.md for every field).
+handle: ankit
+github: ankitkat042
+name: Ankit Kumar
+mode: template
+template: portfolio
+headline: IIIT Delhi · 2025 batch
+batch: IIIT Delhi, 2025
+links:
+  - label: GitHub
+    url: https://github.com/ankitkat042
+    icon: github
+projects:
+  - name: Placement Stats
+    description: Placement statistics for IIIT Delhi batches, published at iiitd.org/placements.
+    url: https://iiitd.org/placements/
+    tags: [Django, Python]
+  - name: QUIC-TCP-Benchmarking
+    description: B.Tech project benchmarking QUIC against TCP.
+    url: https://github.com/ankitkat042/QUIC-TCP-Benchmarking
+    tags: [QUIC, Networking]

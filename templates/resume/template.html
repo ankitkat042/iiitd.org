@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en" class="{{themeClass}}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{name}} · iiitd.org</title>
+  {{#headline}}<meta name="description" content="{{headline}}">{{/headline}}
+  <link rel="canonical" href="{{canonical}}">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700&amp;display=swap">
+  <style>{{{_css}}}</style>
+</head>
+<body>
+  <header class="masthead">
+    {{#avatar}}<img src="{{avatar}}" alt="">{{/avatar}}
+    <div><h1>{{name}}</h1>{{#headline}}<h2>{{headline}}</h2>{{/headline}}</div>
+    {{#bio}}<article><p class="summary">{{bio}}</p></article>{{/bio}}
+    <ul class="icon-list">
+      {{#location}}<li><img src="{{icons.map}}" alt="">{{location}}</li>{{/location}}
+      {{#batch}}<li><img src="{{icons.calendar}}" alt="">{{batch}}</li>{{/batch}}
+      {{#links}}<li><img src="{{iconSrc}}" alt=""><a href="{{url}}" target="_blank" rel="noopener me">{{label}}</a></li>{{/links}}
+    </ul>
+  </header>
+
+  {{#hasExperience}}
+  <section id="work">
+    <h3>Work</h3>
+    <div class="stack">
+      {{#experience}}
+      <article>
+        <header>
+          <h4>{{role}}</h4>
+          <div class="meta">
+            <div><strong>{{organization}}</strong></div>
+            {{#period}}<div>{{period}}</div>{{/period}}
+          </div>
+        </header>
+        {{#summary}}<p>{{summary}}</p>{{/summary}}
+      </article>
+      {{/experience}}
+    </div>
+  </section>
+  {{/hasExperience}}
+
+  {{#hasEducation}}
+  <section id="education">
+    <h3>Education</h3>
+    <div class="stack">
+      {{#education}}
+      <article>
+        <header>
+          <h4>{{institution}}</h4>
+          <div class="meta">
+            {{#degree}}<div><strong>{{degree}}</strong></div>{{/degree}}
+            {{#period}}<div>{{period}}</div>{{/period}}
+          </div>
+        </header>
+        {{#details}}<p>{{details}}</p>{{/details}}
+      </article>
+      {{/education}}
+    </div>
+  </section>
+  {{/hasEducation}}
+
+  {{#hasProjects}}
+  <section id="projects">
+    <h3>Projects</h3>
+    <div class="stack">
+      {{#projects}}
+      <article>
+        <header><h4>{{#url}}<a href="{{url}}" target="_blank" rel="noopener">{{name}}</a>{{/url}}{{^url}}{{name}}{{/url}}</h4></header>
+        {{#description}}<p>{{description}}</p>{{/description}}
+        {{#hasTags}}<ul class="tag-list">{{#tags}}<li>{{.}}</li>{{/tags}}</ul>{{/hasTags}}
+      </article>
+      {{/projects}}
+    </div>
+  </section>
+  {{/hasProjects}}
+
+  {{#hasSkills}}
+  <section id="skills">
+    <h3>Skills</h3>
+    <div class="grid-list"><div><ul class="tag-list">{{#skills}}<li>{{.}}</li>{{/skills}}</ul></div></div>
+  </section>
+  {{/hasSkills}}
+
+  <section>
+    <p class="meta"><a href="/people/">iiitd.org/people</a> · theme: <a href="https://github.com/rbardini/jsonresume-theme-even" target="_blank" rel="noopener">even</a></p>
+  </section>
+</body>
+</html>

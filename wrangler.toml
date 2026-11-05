@@ -1,0 +1,19 @@
+# iiitd.org edge: one Cloudflare Worker with Static Assets for the whole domain.
+#   npm run build && npx wrangler deploy        (CI does this on merges to main)
+#   npx wrangler secret put EDGE_SHARED_SECRET  (same value as the Cloud Run secret)
+name = "iiitd-org"
+main = "edge/worker.js"
+compatibility_date = "2026-11-01"
+
+routes = [{ pattern = "iiitd.org/*", zone_name = "iiitd.org" }]
+
+[assets]
+directory = "./dist"
+binding = "ASSETS"
+html_handling = "auto-trailing-slash"
+# Every request runs edge/worker.js first, which decides headers on the decoded path.
+# Path-matched `_headers` rules are not used: they can be bypassed with percent-encoding.
+run_worker_first = true
+
+[vars]
+PLACEMENTS_ORIGIN = "https://placements-REPLACE_WITH_PROJECT_NUMBER.asia-south1.run.app"
