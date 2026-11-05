@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>People · iiitd.org</title>
+  <meta name="description" content="Profiles of IIIT Delhi students and alumni at iiitd.org/@handle">
+  <style>{{{_css}}}</style>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>People</h1>
+      <p>{{count}} profiles · <a href="https://github.com/ankitkat042/iiitd.org/blob/main/CONTRIBUTING.md">add yours</a></p>
+    </header>
+    <ul>
+      {{#people}}
+      <li>
+        <a href="/@{{handle}}/">
+          <strong>{{name}}</strong>
+          <span class="handle">@{{handle}}</span>
+          {{#headline}}<span class="headline">{{headline}}</span>{{/headline}}
+        </a>
+      </li>
+      {{/people}}
+    </ul>
+    <footer>Not associated with iiitd.ac.in · <a href="/">iiitd.org</a></footer>
+  </main>
+</body>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{name}} · iiitd.org</title>
+  {{#headline}}<meta name="description" content="{{headline}}">{{/headline}}
+  <link rel="canonical" href="{{canonical}}">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&amp;display=swap">
+  <style>{{{_css}}}</style>
+</head>
+<body>
+  <main>
+    <aside class="sidebar active">
+      <div class="sidebar-info">
+        <figure class="avatar-box">
+          {{#avatar}}<img src="{{avatar}}" alt="" width="80">{{/avatar}}
+          {{^avatar}}<span class="avatar-initials" aria-hidden="true">{{initials}}</span>{{/avatar}}
+        </figure>
+        <div class="info-content">
+          <h1 class="name" title="{{name}}">{{name}}</h1>
+          {{#headline}}<p class="title">{{headline}}</p>{{/headline}}
+        </div>
+      </div>
+      <div class="sidebar-info_more">
+        <div class="separator"></div>
+        <ul class="contacts-list">
+          {{#batch}}
+          <li class="contact-item">
+            <div class="icon-box"><img src="{{icons.calendar}}" alt=""></div>
+            <div class="contact-info"><p class="contact-title">Batch</p><p class="contact-link">{{batch}}</p></div>
+          </li>
+          {{/batch}}
+          {{#location}}
+          <li class="contact-item">
+            <div class="icon-box"><img src="{{icons.map}}" alt=""></div>
+            <div class="contact-info"><p class="contact-title">Location</p><address>{{location}}</address></div>
+          </li>
+          {{/location}}
+        </ul>
+        {{#hasLinks}}
+        <div class="separator"></div>
+        <ul class="social-list">
+          {{#links}}
+          <li class="social-item"><a href="{{url}}" class="social-link" target="_blank" rel="noopener me" title="{{label}}"><img src="{{iconSrc}}" alt="{{label}}"></a></li>
+          {{/links}}
+        </ul>
+        {{/hasLinks}}
+      </div>
+    </aside>
+
+    <div class="main-content">
+      <nav class="navbar">
+        <ul class="navbar-list">
+          <li class="navbar-item"><a class="navbar-link active" href="#about">About</a></li>
+          {{#hasResume}}<li class="navbar-item"><a class="navbar-link" href="#resume">Resume</a></li>{{/hasResume}}
+          {{#hasProjects}}<li class="navbar-item"><a class="navbar-link" href="#portfolio">Portfolio</a></li>{{/hasProjects}}
+        </ul>
+      </nav>
+
+      <article class="about active" id="about">
+        <header><h2 class="h2 article-title">About me</h2></header>
+        {{#bio}}<section class="about-text"><p>{{bio}}</p></section>{{/bio}}
+        {{#hasSkills}}
+        <section class="skill">
+          <h3 class="h3 skills-title">Skills</h3>
+          <ul class="skills-tags content-card">{{#skills}}<li>{{.}}</li>{{/skills}}</ul>
+        </section>
+        {{/hasSkills}}
+      </article>
+
+      {{#hasResume}}
+      <article class="resume active" id="resume">
+        <header><h2 class="h2 article-title">Resume</h2></header>
+        {{#hasExperience}}
+        <section class="timeline">
+          <div class="title-wrapper">
+            <div class="icon-box"><img src="{{icons.experience}}" alt=""></div>
+            <h3 class="h3">Experience</h3>
+          </div>
+          <ol class="timeline-list">
+            {{#experience}}
+            <li class="timeline-item">
+              <h4 class="h4 timeline-item-title">{{role}} · {{organization}}</h4>
+              {{#period}}<span>{{period}}</span>{{/period}}
+              {{#summary}}<p class="timeline-text">{{summary}}</p>{{/summary}}
+            </li>
+            {{/experience}}
+          </ol>
+        </section>
+        {{/hasExperience}}
+        {{#hasEducation}}
+        <section class="timeline">
+          <div class="title-wrapper">
+            <div class="icon-box"><img src="{{icons.education}}" alt=""></div>
+            <h3 class="h3">Education</h3>
+          </div>
+          <ol class="timeline-list">
+            {{#education}}
+            <li class="timeline-item">
+              <h4 class="h4 timeline-item-title">{{institution}}</h4>
+              {{#period}}<span>{{period}}</span>{{/period}}
+              {{#degree}}<p class="timeline-text">{{degree}}</p>{{/degree}}
+              {{#details}}<p class="timeline-text">{{details}}</p>{{/details}}
+            </li>
+            {{/education}}
+          </ol>
+        </section>
+        {{/hasEducation}}
+      </article>
+      {{/hasResume}}
+
+      {{#hasProjects}}
+      <article class="portfolio active" id="portfolio">
+        <header><h2 class="h2 article-title">Portfolio</h2></header>
+        <section class="projects">
+          <ul class="project-list">
+            {{#projects}}
+            <li class="project-item active">
+              <a class="project-card content-card"{{#url}} href="{{url}}" target="_blank" rel="noopener"{{/url}}>
+                <h3 class="project-title">{{name}}</h3>
+                {{#tagsText}}<p class="project-category">{{tagsText}}</p>{{/tagsText}}
+                {{#description}}<p class="project-text">{{description}}</p>{{/description}}
+              </a>
+            </li>
+            {{/projects}}
+          </ul>
+        </section>
+      </article>
+      {{/hasProjects}}
+
+      <p class="vc-footer"><a href="/people/">iiitd.org/people</a> · design: <a href="https://github.com/codewithsadee/vcard-personal-portfolio" target="_blank" rel="noopener">vCard</a></p>
+    </div>
+  </main>
+</body>
+</html>

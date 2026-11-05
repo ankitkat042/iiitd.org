@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html class="{{themeClass}}" lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{name}} · iiitd.org</title>
+  {{#headline}}<meta name="description" content="{{headline}}">{{/headline}}
+  <link rel="canonical" href="{{canonical}}">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#121212" media="(prefers-color-scheme: dark)">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&amp;display=swap">
+  <style>{{{_css}}}</style>
+</head>
+<body>
+  <div class="container">
+    <div class="column">
+      <main>
+        {{#avatar}}<img class="avatar avatar--rounded" src="{{avatar}}" alt="" width="128" height="128">{{/avatar}}
+        {{^avatar}}<div class="avatar avatar--rounded initials" aria-hidden="true">{{initials}}</div>{{/avatar}}
+        <h1>{{name}}</h1>
+        {{#headline}}<p>{{headline}}</p>{{/headline}}
+        {{#bio}}<p class="bio">{{bio}}</p>{{/bio}}
+        {{#hasLinks}}
+        <nav class="button-stack" aria-label="Links">
+          {{#links}}
+          <a class="button {{buttonClass}}" href="{{url}}" target="_blank" rel="noopener me"><img class="icon" aria-hidden="true" src="{{iconSrc}}" alt="">{{label}}</a>
+          {{/links}}
+        </nav>
+        {{/hasLinks}}
+      </main>
+      <footer>
+        <a href="/people/">iiitd.org/people</a> · built with <a href="https://littlelink.io/" target="_blank" rel="noopener">LittleLink</a>
+      </footer>
+    </div>
+  </div>
+</body>
+</html>

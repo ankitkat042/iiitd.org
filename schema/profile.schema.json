@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://iiitd.org/schema/profile.schema.json",
+  "title": "iiitd.org/@handle profile",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["handle", "github", "name", "mode"],
+  "properties": {
+    "handle": { "type": "string", "description": "Must equal the folder name under people/." },
+    "github": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9](?:[A-Za-z0-9-]{0,38})$",
+      "description": "GitHub username allowed to change this profile (checked on every pull request)."
+    },
+    "name": { "type": "string", "minLength": 1, "maxLength": 80 },
+    "mode": { "enum": ["template", "static", "redirect", "proxy"] },
+    "template": { "enum": ["card", "portfolio", "resume"] },
+    "redirect": { "type": "string", "pattern": "^https://", "description": "mode: redirect — https URL of your own site." },
+    "proxy": { "type": "string", "pattern": "^https://", "description": "mode: proxy — https URL of a server you run; shown at iiitd.org/@handle." },
+    "headline": { "type": "string", "maxLength": 120 },
+    "bio": { "type": "string", "maxLength": 1500 },
+    "avatar": {
+      "type": "string",
+      "description": "assets/<file> inside your folder, or an https image URL.",
+      "pattern": "^(assets/[A-Za-z0-9._/-]+|https://.+)$"
+    },
+    "location": { "type": "string", "maxLength": 80 },
+    "batch": { "type": "string", "maxLength": 40, "description": "e.g. B.Tech CSE 2025" },
+    "theme": { "enum": ["light", "dark", "auto"], "default": "auto" },
+    "links": {
+      "type": "array",
+      "maxItems": 20,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["label", "url"],
+        "properties": {
+          "label": { "type": "string", "maxLength": 40 },
+          "url": { "type": "string", "pattern": "^(https://|mailto:)" },
+          "icon": {
+            "enum": ["github", "linkedin", "x", "email", "website", "blog", "scholar", "resume", "youtube", "instagram", "mastodon", "leetcode", "codeforces", "kaggle"]
+          }
+        }
+      }
+    },
+    "skills": { "type": "array", "maxItems": 40, "items": { "type": "string", "maxLength": 40 } },
+    "projects": {
+      "type": "array",
+      "maxItems": 20,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name"],
+        "properties": {
+          "name": { "type": "string", "maxLength": 80 },
+          "description": { "type": "string", "maxLength": 400 },
+          "url": { "type": "string", "pattern": "^https://" },
+          "tags": { "type": "array", "maxItems": 8, "items": { "type": "string", "maxLength": 30 } }
+        }
+      }
+    },
+    "experience": {
+      "type": "array",
+      "maxItems": 20,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["role", "organization"],
+        "properties": {
+          "role": { "type": "string", "maxLength": 80 },
+          "organization": { "type": "string", "maxLength": 80 },
+          "start": { "type": "string", "maxLength": 20 },
+          "end": { "type": "string", "maxLength": 20 },
+          "summary": { "type": "string", "maxLength": 600 }
+        }
+      }
+    },
+    "education": {
+      "type": "array",
+      "maxItems": 10,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["institution"],
+        "properties": {
+          "institution": { "type": "string", "maxLength": 100 },
+          "degree": { "type": "string", "maxLength": 100 },
+          "start": { "type": "string", "maxLength": 20 },
+          "end": { "type": "string", "maxLength": 20 },
+          "details": { "type": "string", "maxLength": 400 }
+        }
+      }
+    }
+  },
+  "allOf": [
+    { "if": { "properties": { "mode": { "const": "template" } } }, "then": { "required": ["template"] } },
+    { "if": { "properties": { "mode": { "const": "redirect" } } }, "then": { "required": ["redirect"] } },
+    { "if": { "properties": { "mode": { "const": "proxy" } } }, "then": { "required": ["proxy"] } }
+  ]
+}

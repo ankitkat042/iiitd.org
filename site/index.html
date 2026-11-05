@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>IIIT Delhi</title>
+    <link rel="icon" href="https://www.iiitd.ac.in/sites/default/files/style1coloricon_0.png" type="image/x-icon">
+    <!-- Pinned with Subresource Integrity: this page shares an origin with /placements, so a
+         tampered CDN file must not be able to run here. -->
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"
+            integrity="sha384-3Fq7uOoYlwjBPd7WqW1GJn4kvwaGwSc39zj9mh8g+IjvTColu1PLW5L/smZ0qw/p"
+            crossorigin="anonymous"></script>
+    <style>
+        #info {
+            position: fixed;
+            bottom: 10px;
+            width: 100%;
+            text-align: center;
+            color: white;
+            font-size: 16px;
+            z-index: 100;
+        }
+        a {
+            color: white;
+            text-decoration: none;
+        }
+        .button {
+            position: fixed;
+            top: 50%;
+            z-index: 100;
+            cursor: pointer;
+            font-size: 24px;
+            color: white;
+            background-color: rgba(0, 0, 0, 0.5);
+            border: none;
+            padding: 10px;
+        }
+        #left-button {
+            left: 10px;
+        }
+        #right-button {
+            right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <a-scene>
+        <a-sky id="image-sky" src="1.jpg" rotation="0 -130 0"></a-sky>
+    </a-scene>
+    <div id="info">
+        Mail at: <a href="mailto:rankinw3@mail.lcc.edu">rankinw3@mail.lcc.edu</a> ·
+        <a href="/people/">people</a> · <a href="/placements/">placements</a><br>
+        Not associated with: iiitd.ac.in
+    </div>
+    <button id="left-button" class="button" data-step="-1" aria-label="Previous image">&#10094;</button>
+    <button id="right-button" class="button" data-step="1" aria-label="Next image">&#10095;</button>
+
+    <script>
+        var images = ["1.jpg", "2.jpg", "3.jpg", "4.jpg"];
+        var currentIndex = 0;
+
+        function changeImage(direction) {
+            currentIndex += direction;
+            if (currentIndex < 0) currentIndex = images.length - 1;
+            if (currentIndex >= images.length) currentIndex = 0;
+            document.getElementById('image-sky').setAttribute('src', images[currentIndex]);
+        }
+
+        document.querySelectorAll('[data-step]').forEach(function (button) {
+            button.addEventListener('click', function () {
+                changeImage(Number(button.dataset.step));
+            });
+        });
+    </script>
+</body>
+</html>
